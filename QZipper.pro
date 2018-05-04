@@ -1,4 +1,4 @@
-QT += quick
+QT += quick concurrent
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -14,7 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/main.cpp \
-    src/qzipper.cpp
+    src/qzipper.cpp \
+
 
 
 RESOURCES += qml.qrc
@@ -31,22 +32,26 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 
-DISTFILES +=
-
 HEADERS += \
-    src/qzipper.h
+    src/qzipper.h \
 
 
+#INCLUDEPATH += /usr/local/include/zipper \
 
-INCLUDEPATH += /usr/local/include/zipper \
+#LIBS += -L/usr/local/lib/ -lZipper-static
 
-LIBS += -L/usr/local/lib/ -lZipper-static
+#LIBS += \
+#   -lm \
+#   -lpthread \
+#   -lZipper-static \
+#   -lz \
+
+INCLUDEPATH += \
+    src/library/QArchive/libarchive/include  \
+    src/library/QArchive \
+
+LIBS +=  -L$$PWD/src/library/QArchive/libarchive/lib \
 
 
-LIBS += \
-   -lm \
-   -lpthread \
-   -lZipper-static \
-   -lz \
-
+LIBS +=  -larchive \
 

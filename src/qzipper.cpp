@@ -4,9 +4,7 @@ QZipper::QZipper(QObject *parent) : QObject(parent)
 {
     std::cout << "create QZipper object" << std::endl;
 
-    zipper::Unzipper unzipper("/home/hydra/Downloads/update_linux.zip");
-    unzipper.extract();
-    unzipper.close();
+    QArchive::Extractor("/home/hydra/Downloads/update_linux.zip","/home/hydra/Desktop/Untitled Folder" ).start().waitForFinished();
 
     std::cout << "extract done" << std::endl;
 }

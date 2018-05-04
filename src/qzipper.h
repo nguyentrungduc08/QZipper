@@ -3,12 +3,7 @@
 
 #include <QObject>
 #include <iostream>
-
-
-#include <zipper/zip.h>
-#include <zipper/zipper.h>
-#include <zipper/unzipper.h>
-#include <zipper/tools.h>
+#include "QArchive.hpp"
 
 class QZipper : public QObject
 {
