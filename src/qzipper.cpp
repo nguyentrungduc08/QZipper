@@ -4,7 +4,19 @@ QZipper::QZipper(QObject *parent) : QObject(parent)
 {
     std::cout << "create QZipper object" << std::endl;
 
-    QArchive::Extractor("/home/hydra/Downloads/update_linux.zip","/home/hydra/Desktop/Untitled Folder" ).start().waitForFinished();
+//    QArchive::Extractor("/media/veracrypt1/UntitledFolder/SkyChat.bak.7z","/media/veracrypt1/UntitledFolder" ).start().waitForFinished();
+//    QArchive::Compressor("lib.zip", "lib").start().waitForFinished();
+//    QArchive::Compressor("lib.zip", "plugins").start().waitForFinished();
+//    QArchive::Compressor("lib.zip", "qml").start().waitForFinished();
+//    QArchive::Compressor("lib.zip", "SkyChat").start().waitForFinished();
+
+//    QStringList listString;
+//    listString << "lib" << "plugins" << "qml" << "SkyChat";
+
+//    QArchive::Compressor compessor("SkyChat.bak.7z" , listString);
+//    compessor.setArchiveFormat(QArchive::SEVEN_ZIP);
+
+//    compessor.start().waitForFinished();
 
     std::cout << "extract done" << std::endl;
 }

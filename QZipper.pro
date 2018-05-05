@@ -15,8 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/main.cpp \
     src/qzipper.cpp \
-
-
+    src/library/QArchive/QArchive.cc
 
 RESOURCES += qml.qrc
 
@@ -31,10 +30,9 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-
 HEADERS += \
     src/qzipper.h \
-
+    src/library/QArchive/QArchive.hpp
 
 #INCLUDEPATH += /usr/local/include/zipper \
 
