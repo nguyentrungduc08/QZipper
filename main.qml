@@ -32,25 +32,7 @@ Window {
             ListElement { path: "/home/Desktop/code" }
         }
 
-        FileDialog {
-            id: fileDialog
-            title: "Please choose a file or folder to compress"
-            folder: shortcuts.home
 
-            selectExisting: true
-            selectFolder: true
-            selectMultiple: true
-
-            onAccepted: {
-                console.log("You chose: " + fileDialog.fileUrls)
-                Qt.quit()
-            }
-            onRejected: {
-                console.log("Canceled")
-                Qt.quit()
-            }
-            //Component.onCompleted: visible = false
-        }
 
         Tab {
             title: "Compress"
@@ -65,7 +47,7 @@ Window {
                         height: parent.height * 2 / 3
 
                         delegate: Text {
-                            text: qsTr(path)
+                            text: path
                         }
                 }
                 Button {
@@ -90,6 +72,27 @@ Window {
                             fileDialog.open()
                         }
 
+                }
+
+                FileDialog {
+                    id: fileDialog
+                    title: "Please choose a file or folder to compress"
+                    folder: shortcuts.home
+
+                    selectFolder: true
+                    selectMultiple: true
+
+                    onAccepted: {
+                        console.log("You chose: " + fileDialog.fileUrl);
+                        var vpath = fileDialog.fileUrl.toString();
+                        vpath = vpath.replace(/^(file:\/{3})/,"");
+                        listPath.append({path:  vpath});
+
+                    }
+                    onRejected: {
+                        console.log("Canceled")
+                    }
+                    //Component.onCompleted: visible = false
                 }
 
             }

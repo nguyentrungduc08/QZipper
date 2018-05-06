@@ -14,6 +14,8 @@ public:
 signals:
 
 public slots:
+    void    slot_Compression();
+    void    slot_Decompression();
 };
 
 #endif // QZIPPER_H

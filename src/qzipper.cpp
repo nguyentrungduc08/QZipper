@@ -25,3 +25,14 @@ QZipper::~QZipper()
 {
     std::cout << "destroy QZipper object" << std::endl;
 }
+
+
+void
+QZipper::slot_Compression(){
+
+}
+
+void
+QZipper::slot_Decompression(){
+
+}
