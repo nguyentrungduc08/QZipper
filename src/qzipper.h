@@ -4,6 +4,7 @@
 #include <QObject>
 #include <iostream>
 #include <QArchive.hpp>
+#include <iostream>
 
 class QZipper : public QObject
 {
@@ -15,7 +16,7 @@ signals:
 
 public slots:
     void    slot_Compression();
-    void    slot_Decompression();
+    void    slot_Decompression(const QString & path);
 };
 
 #endif // QZIPPER_H
