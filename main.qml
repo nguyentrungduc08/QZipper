@@ -26,10 +26,10 @@ Window {
 
         ListModel{
             id: listPath
-            ListElement { path: "/home/Desktop/code" }
-            ListElement { path: "/home/Desktop/code" }
-            ListElement { path: "/home/Desktop/code" }
-            ListElement { path: "/home/Desktop/code" }
+//            ListElement { path: "/home/Desktop/code" }
+//            ListElement { path: "/home/Desktop/code" }
+//            ListElement { path: "/home/Desktop/code" }
+//            ListElement { path: "/home/Desktop/code" }
         }
 
 
@@ -100,7 +100,26 @@ Window {
         Tab {
             title: "decompress"
             Rectangle {
-
+                Rectangle{
+                    id: boderFilePath
+                    anchors.left: parent.left
+                    anchors.top: parent.top
+//                    border.pixelAligned: 1
+                    width: parent - 30
+                    height: 15
+                    TextArea {
+                        id: pathText
+                        text: qsTr("text")
+                        anchors.fill: parent
+                    }
+                }
+                Button{
+                    text: "Choose File"
+                    anchors.top: parent.top
+                    anchors.left: boderFilePath.right
+                    width: 30
+                    height: 15
+                }
             }
         }
 
