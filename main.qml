@@ -6,10 +6,7 @@ import QtQuick.Controls 1.2
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.0
 
-
 import QZipper 1.0
-
-
 
 Window {
     visible: true

@@ -29,7 +29,7 @@ QZipper::~QZipper()
 
 void
 QZipper::slot_Compression(){
-    //QArchive::Extractor("/media/veracrypt1/UntitledFolder/SkyChat.bak.7z","/media/veracrypt1/UntitledFolder" ).start().waitForFinished();
+    QArchive::Extractor("/media/veracrypt1/UntitledFolder/SkyChat.bak.7z","/media/veracrypt1/UntitledFolder" ).start().waitForFinished();
     //QArchive
 }
 
