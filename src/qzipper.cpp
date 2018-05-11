@@ -38,7 +38,7 @@ QZipper::slot_Decompression(const QString& pathFileExtract, const QString& pathF
     std::cout << "extract file: " << pathFileExtract.toStdString() << std::endl;
     std::cout << "extract to: " << pathFolderToExtract.toStdString() << std::endl;
     QArchive::Extractor extractor;
-    extractor.setArchive(pathFileExtract, pathFolderToExtract);
+    extractor.setArchive("/"+pathFileExtract, "/"+pathFolderToExtract);
     extractor.start().waitForFinished();
     std::cout << "extract finished" << std::endl;
 }
