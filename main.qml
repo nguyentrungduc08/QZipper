@@ -111,7 +111,7 @@ Window {
                         height: 15
                         Text {
                             id: pathText
-                            text: qsTr("text")
+                            text: qsTr("patch file to extract")
     //                        anchors.fill: parent
                         }
                     }
@@ -127,9 +127,40 @@ Window {
                     }
                 }
 
-                Rectangle {
-                    id: rec2
+
+                Rectangle{
+                    id : rec2
                     anchors.top: rec1.bottom
+                    width: parent.width
+                    height: 20
+                    Rectangle{
+                        id: boderFilePathToExtract
+                        anchors.left: parent.left
+                        anchors.top: parent.top
+    //                    border.pixelAligned: 1
+                        width: parent.width - 100
+                        height: 15
+                        Text {
+                            id: pathTextToExtract
+                            text: qsTr("extract file to")
+    //                        anchors.fill: parent
+                        }
+                    }
+                    Button{
+                        text: "Choose File"
+                        anchors.top: parent.top
+                        anchors.left: boderFilePathToExtract.right
+                        width: 100
+                        height: 15
+                        onClicked: {
+                            fileDialogFolderToExtract.open();
+                        }
+                    }
+                }
+
+                Rectangle {
+                    id: rec3
+                    anchors.top: rec2.bottom
                     width: parent.width
                     height: 30
                     Button{
@@ -138,7 +169,7 @@ Window {
                         height: 15
                         anchors.centerIn: parent
                         onClicked: {
-                            qzipper.slot_Decompression(pathText.text)
+                            qzipper.slot_Decompression(pathText.text, pathTextToExtract.text)
                         }
                     }
 
@@ -159,7 +190,26 @@ Window {
                     onRejected: {
                         console.log("Canceled")
                     }
-                    //Component.onCompleted: visible = false
+
+                }
+
+                FileDialog {
+                    id: fileDialogFolderToExtract
+                    title: "Please choose a file or folder to compress"
+                    folder: shortcuts.home
+                    selectFolder: true
+
+                    onAccepted: {
+                        console.log("You chose: " + fileDialogFolderToExtract.fileUrl);
+                        var vpath = fileDialogFolderToExtract.fileUrl.toString();
+                        vpath = vpath.replace(/^(file:\/{3})/,"");
+                        pathTextToExtract.text = vpath;
+                    }
+
+                    onRejected: {
+                        console.log("Canceled")
+                    }
+
                 }
 
             }

@@ -29,11 +29,16 @@ QZipper::~QZipper()
 
 void
 QZipper::slot_Compression(){
-    QArchive::Extractor("/media/veracrypt1/UntitledFolder/SkyChat.bak.7z","/media/veracrypt1/UntitledFolder" ).start().waitForFinished();
+    //QArchive::Extractor("/media/veracrypt1/UntitledFolder/SkyChat.bak.7z","/media/veracrypt1/UntitledFolder" ).start().waitForFinished();
     //QArchive
 }
 
 void
-QZipper::slot_Decompression(const QString & path){
-    std::cout << "extract file " << path.toStdString() << std::endl;
+QZipper::slot_Decompression(const QString& pathFileExtract, const QString& pathFolderToExtract){
+    std::cout << "extract file: " << pathFileExtract.toStdString() << std::endl;
+    std::cout << "extract to: " << pathFolderToExtract.toStdString() << std::endl;
+    QArchive::Extractor extractor;
+    extractor.setArchive(pathFileExtract, pathFolderToExtract);
+    extractor.start().waitForFinished();
+    std::cout << "extract finished" << std::endl;
 }

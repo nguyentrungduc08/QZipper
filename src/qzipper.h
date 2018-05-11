@@ -16,7 +16,7 @@ signals:
 
 public slots:
     void    slot_Compression();
-    void    slot_Decompression(const QString & path);
+    void    slot_Decompression(const QString& pathFileExtract, const QString& pathFolderToExtract);
 };
 
 #endif // QZIPPER_H
