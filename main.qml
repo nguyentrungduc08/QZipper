@@ -49,10 +49,56 @@ Window {
                             text: path
                         }
                 }
+                Rectangle {
+                    id: recCom1
+                    width: parent.width
+                    height: 50
+                    anchors.top: listViewPatch.bottom
+
+                    Button {
+                        id: buttonSetArchiveFileName
+                        text: "Archive name:"
+                        width: parent.width / 4
+                        onClicked: {
+q                           fileDialogSaveArchiveFile.open()
+                        }
+                    }
+
+                    TextField{
+                        id: fileArchiveName
+                        width: parent.width
+                        anchors.top: buttonSetArchiveFileName.bottom
+
+                    }
+
+                    FileDialog {
+                        id: fileDialogSaveArchiveFile
+                        title: "Please choose a folder save file archivesss"
+                        folder: shortcuts.home
+
+                        selectFolder: true
+
+                        onAccepted: {
+                            console.log("You chose: " + fileDialog.fileUrl);
+                            var vpath = fileDialog.fileUrl.toString();
+                            vpath = vpath.replace(/^(file:\/{3})/,"");
+                            fileArchiveName.text = vpath;
+
+                        }
+                        onRejected: {
+                            console.log("Canceled")
+                        }
+                        //Component.onCompleted: visible = false
+                    }
+
+                }
+
+
+
                 Button {
                         id: buttonChooseFile
                         text: "Choose files or folders"
-                        anchors.top: listViewPatch.bottom
+                        anchors.top: recCom1.bottom
 
                         onClicked: {
                             fileDialog.open()
@@ -62,7 +108,7 @@ Window {
                 Button {
                         id: buttonCompess
                         text: "Compress"
-                        anchors.top: listViewPatch.bottom
+                        anchors.top: recCom1.bottom
                         anchors.left: buttonChooseFile.right
 
 
@@ -71,6 +117,7 @@ Window {
                         }
 
                 }
+
 
                 FileDialog {
                     id: fileDialog
