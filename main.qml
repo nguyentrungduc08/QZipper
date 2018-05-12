@@ -49,10 +49,56 @@ Window {
                             text: path
                         }
                 }
+                Rectangle {
+                    id: recCom1
+                    width: parent.width
+                    height: 50
+                    anchors.top: listViewPatch.bottom
+
+                    Button {
+                        id: buttonSetArchiveFileName
+                        text: "Archive name:"
+                        width: parent.width / 4
+                        onClicked: {
+                            fileDialogSaveArchiveFile.open()
+                        }
+                    }
+
+                    TextField{
+                        id: fileArchiveName
+                        width: parent.width
+                        anchors.top: buttonSetArchiveFileName.bottom
+                        text: "path to save"
+                    }
+
+                    FileDialog {
+                        id: fileDialogSaveArchiveFile
+                        title: "Please choose a folder save file archivesss"
+                        folder: shortcuts.home
+
+                        selectFolder: true
+
+                        onAccepted: {
+                            console.log("You chose: " + fileDialogSaveArchiveFile.fileUrl);
+                            var vpath = fileDialogSaveArchiveFile.fileUrl.toString();
+                            vpath = vpath.replace(/^(file:\/{3})/,"");
+                            fileArchiveName.text = vpath;
+
+                        }
+                        onRejected: {
+                            console.log("Canceled")
+                        }
+
+                    }
+
+                }
+
+
+
                 Button {
                         id: buttonChooseFile
                         text: "Choose files or folders"
-                        anchors.top: listViewPatch.bottom
+                        anchors.top: recCom1.bottom
 
                         onClicked: {
                             fileDialog.open()
@@ -62,15 +108,16 @@ Window {
                 Button {
                         id: buttonCompess
                         text: "Compress"
-                        anchors.top: listViewPatch.bottom
+                        anchors.top: recCom1.bottom
                         anchors.left: buttonChooseFile.right
 
 
                         onClicked: {
-                            fileDialog.open()
+                            qzipper.slot_Compression(listPath.get(0).path, fileArchiveName.text)
                         }
 
                 }
+
 
                 FileDialog {
                     id: fileDialog
@@ -90,7 +137,6 @@ Window {
                     onRejected: {
                         console.log("Canceled")
                     }
-                    //Component.onCompleted: visible = false
                 }
 
             }

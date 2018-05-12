@@ -28,9 +28,14 @@ QZipper::~QZipper()
 
 
 void
-QZipper::slot_Compression(){
-    //QArchive::Extractor("/media/veracrypt1/UntitledFolder/SkyChat.bak.7z","/media/veracrypt1/UntitledFolder" ).start().waitForFinished();
-    //QArchive
+QZipper::slot_Compression(const QString& pathCompress, const QString& pathFolderToArchvie){
+    std::cout << "path compress file or folder: " << pathCompress.toStdString() << std::endl;
+    std::cout << "path to save archive: " << pathFolderToArchvie.toStdString() << std::endl;
+    QArchive::Compressor compressor;
+    compressor.setArchive( "/" + pathFolderToArchvie);
+    compressor.addFiles("/" + pathCompress);
+    compressor.start().waitForFinished();
+    std::cout << "compress finished" << std::endl;
 }
 
 void

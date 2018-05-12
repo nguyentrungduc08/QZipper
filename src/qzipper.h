@@ -15,7 +15,7 @@ public:
 signals:
 
 public slots:
-    void    slot_Compression();
+    void    slot_Compression(const QString& pathCompress, const QString& pathFolderToArchvie);
     void    slot_Decompression(const QString& pathFileExtract, const QString& pathFolderToExtract);
 };
 
