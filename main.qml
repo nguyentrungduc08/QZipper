@@ -60,7 +60,7 @@ Window {
                         text: "Archive name:"
                         width: parent.width / 4
                         onClicked: {
-q                           fileDialogSaveArchiveFile.open()
+                            fileDialogSaveArchiveFile.open()
                         }
                     }
 
@@ -68,7 +68,7 @@ q                           fileDialogSaveArchiveFile.open()
                         id: fileArchiveName
                         width: parent.width
                         anchors.top: buttonSetArchiveFileName.bottom
-
+                        text: "path to save"
                     }
 
                     FileDialog {
@@ -79,8 +79,8 @@ q                           fileDialogSaveArchiveFile.open()
                         selectFolder: true
 
                         onAccepted: {
-                            console.log("You chose: " + fileDialog.fileUrl);
-                            var vpath = fileDialog.fileUrl.toString();
+                            console.log("You chose: " + fileDialogSaveArchiveFile.fileUrl);
+                            var vpath = fileDialogSaveArchiveFile.fileUrl.toString();
                             vpath = vpath.replace(/^(file:\/{3})/,"");
                             fileArchiveName.text = vpath;
 
@@ -88,7 +88,7 @@ q                           fileDialogSaveArchiveFile.open()
                         onRejected: {
                             console.log("Canceled")
                         }
-                        //Component.onCompleted: visible = false
+
                     }
 
                 }
@@ -113,7 +113,7 @@ q                           fileDialogSaveArchiveFile.open()
 
 
                         onClicked: {
-                            fileDialog.open()
+                            qzipper.slot_Compression(listPath.get(0).path, fileArchiveName.text)
                         }
 
                 }
@@ -137,7 +137,6 @@ q                           fileDialogSaveArchiveFile.open()
                     onRejected: {
                         console.log("Canceled")
                     }
-                    //Component.onCompleted: visible = false
                 }
 
             }

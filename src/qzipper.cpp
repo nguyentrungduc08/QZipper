@@ -28,9 +28,14 @@ QZipper::~QZipper()
 
 
 void
-QZipper::slot_Compression(){
+QZipper::slot_Compression(const QString& pathCompress, const QString& pathFolderToArchvie){
+    std::cout << "path compress file or folder: " << pathCompress.toStdString() << std::endl;
+    std::cout << "path to save archive: " << pathFolderToArchvie.toStdString() << std::endl;
     QArchive::Compressor compressor;
-//    compressor.setArchive();
+    compressor.setArchive( "/" + pathFolderToArchvie);
+    compressor.addFiles("/" + pathCompress);
+    compressor.start().waitForFinished();
+    std::cout << "compress finished" << std::endl;
 }
 
 void
