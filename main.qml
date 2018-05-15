@@ -25,13 +25,7 @@ Window {
 
         ListModel{
             id: listPath
-//            ListElement { path: "/home/Desktop/code" }
-//            ListElement { path: "/home/Desktop/code" }
-//            ListElement { path: "/home/Desktop/code" }
-//            ListElement { path: "/home/Desktop/code" }
         }
-
-
 
         Tab {
             title: "Compress"
@@ -117,7 +111,6 @@ Window {
                         }
 
                 }
-
 
                 FileDialog {
                     id: fileDialog

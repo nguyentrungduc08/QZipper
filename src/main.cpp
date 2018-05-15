@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QIcon>
+#include <QMessageLogger>
+#include <QMessageLogContext>
 #include "qzipper.h"
 
 
