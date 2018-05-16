@@ -15,7 +15,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/main.cpp \
     src/qzipper.cpp \
-    src/library/QArchive/QArchive.cc
+    src/library/QArchive/QArchive.cc \
+    src/logger.cpp \
+    src/library/Logger/simpleQtLogger.cpp
 
 RESOURCES += qml.qrc
 
@@ -32,7 +34,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     src/qzipper.h \
-    src/library/QArchive/QArchive.hpp
+    src/library/QArchive/QArchive.hpp \
+    src/logger.h \
+    src/library/Logger/simpleQtLogger.h
 
 #INCLUDEPATH += /usr/local/include/zipper \
 
@@ -47,7 +51,7 @@ HEADERS += \
 INCLUDEPATH += \
     src/library/QArchive/libarchive/include  \
     src/library/QArchive \
-
+    src/library/Logger \
 LIBS +=  -L$$PWD/src/library/QArchive/libarchive/lib \
 
 

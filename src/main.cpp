@@ -5,6 +5,8 @@
 #include <QMessageLogContext>
 #include <QList>
 #include "qzipper.h"
+#include "logger.h"
+
 #include <iostream>
 
 class object{
@@ -52,6 +54,7 @@ QList<object> funcB(){
 
 int main(int argc, char *argv[])
 {
+
     {
         QList<object> listA= funcA();
         QList<object> listB= funcB();
@@ -63,7 +66,6 @@ int main(int argc, char *argv[])
             std::cout << " log " << listB[i].a << std::endl;
         }
     }
-
 
     const char * url = "QZipper";
     qmlRegisterType<QZipper>(url,1,0,"QZipper");
