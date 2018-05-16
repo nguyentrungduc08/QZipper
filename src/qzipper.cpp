@@ -36,6 +36,7 @@ QZipper::slot_Compression(const QString& pathCompress, const QString& pathFolder
     compressor.addFiles("/" + pathCompress);
     compressor.start().waitForFinished();
     std::cout << "compress finished" << std::endl;
+
 }
 
 void

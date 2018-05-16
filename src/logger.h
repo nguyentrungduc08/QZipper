@@ -5,6 +5,10 @@
 #include <QObject>
 #include <QFile>
 #include <QDateTime>
+#include <iostream>
+#include <QApplication>
+
+#include <simpleQtLogger.h>
 
 class Logger : public QObject
 {
@@ -18,6 +22,7 @@ private:
 signals:
 
 public slots:
+    void    writeLog(const QString & msg);
 
 };
 

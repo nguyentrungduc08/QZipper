@@ -51,10 +51,7 @@ QList<object> funcB(){
     return list;
 }
 
-
-int main(int argc, char *argv[])
-{
-
+void fun(){
     {
         QList<object> listA= funcA();
         QList<object> listB= funcB();
@@ -66,6 +63,11 @@ int main(int argc, char *argv[])
             std::cout << " log " << listB[i].a << std::endl;
         }
     }
+}
+
+int main(int argc, char *argv[])
+{
+    Logger loger;
 
     const char * url = "QZipper";
     qmlRegisterType<QZipper>(url,1,0,"QZipper");

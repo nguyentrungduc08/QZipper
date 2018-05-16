@@ -1,4 +1,4 @@
-QT += quick concurrent
+QT += quick concurrent core gui
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -51,9 +51,9 @@ HEADERS += \
 INCLUDEPATH += \
     src/library/QArchive/libarchive/include  \
     src/library/QArchive \
-    src/library/Logger \
-LIBS +=  -L$$PWD/src/library/QArchive/libarchive/lib \
+    src/library/Logger
 
+LIBS +=  -L$$PWD/src/library/QArchive/libarchive/lib \
 
 LIBS +=  -larchive \
 
