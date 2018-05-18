@@ -6,7 +6,7 @@
 #include <QList>
 #include "qzipper.h"
 #include "logger.h"
-
+#include  <QApplication>
 #include <iostream>
 
 class object{
@@ -67,14 +67,16 @@ void fun(){
 
 int main(int argc, char *argv[])
 {
-    Logger loger;
+    std::cout << "log: " << __LINE__ << __FUNCTION__ << std::endl;
 
     const char * url = "QZipper";
     qmlRegisterType<QZipper>(url,1,0,"QZipper");
 
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+//    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
+
+    Logger loger;
 
     QIcon icon(":/resources/zipper.png");
     app.setWindowIcon(icon);

@@ -6,6 +6,8 @@
 #include <QArchive.hpp>
 #include <iostream>
 
+#include "logger.h"
+
 class QZipper : public QObject
 {
     Q_OBJECT
