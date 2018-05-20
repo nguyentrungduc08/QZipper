@@ -9,7 +9,6 @@
 #include <QDateTime>
 #include <iostream>
 
-#include <simpleQtLogger.h>
 
 class Logger : public QObject
 {

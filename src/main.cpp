@@ -77,10 +77,10 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
 
-    Logger loger;
+    ControllerWrite *contWrite = new ControllerWrite;
 
-    Worker worker;
-    worker.doWork();
+
+    ControllerRead *contRead = new ControllerRead;
 
     QIcon icon(":/resources/zipper.png");
     app.setWindowIcon(icon);
