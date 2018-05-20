@@ -16,7 +16,7 @@ WorkerWrite::doWork()
 {
     int count = 0 ;
     while (count < 100){
-        Logger::sharedInstance()->writeLog(QString("test write log thread" + count));
+        Logger::sharedInstance()->writeLog(QString("test write log thread " + QString::number(count)));
         ++count;
         qDebug() << "write thread " << count;
         QThread::sleep(1);

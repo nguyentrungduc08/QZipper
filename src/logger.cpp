@@ -26,21 +26,20 @@ Logger::sharedInstance()
 void
 Logger::writeLog(const QString & msg){
 
-    this->_mutex.lock();
+    qDebug() << "before log: " << msg;
 
-    if (!this->_file->open(QIODevice::WriteOnly | QIODevice::Text)) {
-        this->_mutex.unlock();
+//    QMutexLocker loc(&this->_mutex);
+
+    if (!this->_file->open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
+
         return;
     }
+    qDebug() << "....";
+    this->_file->write(msg.toLocal8Bit(), qstrlen(msg.toLocal8Bit()));
 
-    this->_file->write(msg.toLocal8Bit());
-
-    this->_file->waitForBytesWritten(100);
+//    this->_file->waitForBytesWritten(100);
 
     this->_file->close();
-
-
-    this->_mutex.unlock();
 
     return;
 }
@@ -48,16 +47,17 @@ Logger::writeLog(const QString & msg){
 QString
 Logger::readLog(){
 
-    this->_mutex.lock();
+//    this->_mutex.lock();
+//    QMutexLocker loc(&this->_mutex);
 
     if (!this->_file->open(QIODevice::ReadOnly | QIODevice::Text)){
-        this->_mutex.unlock();
+
         return "";
     }
-    this->_file->waitForReadyRead(100);
+//    this->_file->waitForReadyRead(100);
     QString re = this->_file->readAll();
     this->_file->close();
-    this->_mutex.unlock();
+
     return re;
 }
 
