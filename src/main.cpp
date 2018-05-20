@@ -6,6 +6,7 @@
 #include <QList>
 #include "qzipper.h"
 #include "logger.h"
+#include "worker.h"
 #include  <QApplication>
 #include <iostream>
 
@@ -77,6 +78,9 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     Logger loger;
+
+    Worker worker;
+    worker.doWork();
 
     QIcon icon(":/resources/zipper.png");
     app.setWindowIcon(icon);
