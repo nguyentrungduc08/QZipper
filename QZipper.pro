@@ -17,7 +17,8 @@ SOURCES += \
     src/qzipper.cpp \
     src/library/QArchive/QArchive.cc \
     src/logger.cpp \
-    src/library/Logger/simpleQtLogger.cpp
+    src/library/Logger/simpleQtLogger.cpp \
+    src/worker.cpp
 
 RESOURCES += qml.qrc
 
@@ -36,7 +37,8 @@ HEADERS += \
     src/qzipper.h \
     src/library/QArchive/QArchive.hpp \
     src/logger.h \
-    src/library/Logger/simpleQtLogger.h
+    src/library/Logger/simpleQtLogger.h \
+    src/worker.h
 
 #INCLUDEPATH += /usr/local/include/zipper \
 

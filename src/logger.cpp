@@ -33,7 +33,6 @@ Logger::Logger(QObject *parent) : QObject(parent)
 
     simpleqtlogger::SimpleQtLogger::createInstance(this)->setLogFormat_file("<TS> <TEXT> ","");
     simpleqtlogger::SimpleQtLogger::getInstance()->setLogFileName(this->_filePathLog, 10*1000, 10);
-    qDebug() << this->_filePathLog;
     simpleqtlogger::SimpleQtLogger::getInstance()->setLogLevels_file(enableLogLevels_file);
 //    simpleqtlogger::SimpleQtLogger::getInstance()->setLogLevels_console(enableLogLevels_console);
     simpleqtlogger::SimpleQtLogger::getInstance()->setLogLevels_qDebug(enableLogLevels_qDebug);
