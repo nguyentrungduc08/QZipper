@@ -6,7 +6,7 @@ Logger* Logger::_instance = NULL;
 Logger::Logger(QObject *parent) : QObject(parent)
 {
     this->_filePathLog = QCoreApplication::applicationDirPath() + "/" +"Qzipper.log";
-
+    this->_file = new QFile(this->_filePathLog);
     this->resetLog();
 }
 
@@ -25,36 +25,49 @@ Logger::sharedInstance()
 
 void
 Logger::writeLog(const QString & msg){
-    QFile file(this->_filePathLog);
 
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) return;
+    this->_mutex.lock();
 
-    file.write(msg.toLocal8Bit());
-    file.waitForBytesWritten(10);
-    file.close();
+    if (!this->_file->open(QIODevice::WriteOnly | QIODevice::Text)) {
+        this->_mutex.unlock();
+        return;
+    }
+
+    this->_file->write(msg.toLocal8Bit());
+
+    this->_file->waitForBytesWritten(100);
+
+    this->_file->close();
+
+
+    this->_mutex.unlock();
+
+    return;
 }
 
 QString
 Logger::readLog(){
-    QFile f(this->_filePathLog);
-    if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) return "";
 
-//    qDebug() << f.size() << in.readAll();
-    QString re = f.readAll();
-    f.waitForReadyRead(10);
-    f.close();
-    f.remove();
+    this->_mutex.lock();
+
+    if (!this->_file->open(QIODevice::ReadOnly | QIODevice::Text)){
+        this->_mutex.unlock();
+        return "";
+    }
+    this->_file->waitForReadyRead(100);
+    QString re = this->_file->readAll();
+    this->_file->close();
+    this->_mutex.unlock();
     return re;
 }
 
 bool
 Logger::resetLog(){
+    this->_mutex.lock();
 
-    QFile file(this->_filePathLog);
-    bool f = file.open(QFile::WriteOnly|QFile::Truncate);
-    file.close();
+    this->_file->open(QFile::WriteOnly|QFile::Truncate);
+    this->_file->close();
 
-    return f;
 }
 
 bool

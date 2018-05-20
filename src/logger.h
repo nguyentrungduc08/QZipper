@@ -5,6 +5,7 @@
 #include <QObject>
 #include <QObject>
 #include <QFile>
+#include <QMutex>
 #include <QDir>
 #include <QDateTime>
 #include <iostream>
@@ -38,8 +39,9 @@ private:
     QString             _logReceiver;
     QString             _logMSGID;
     QString             _logMSGSS;
-
+    QMutex              _mutex;
     QString             _filePathLog;
+    QFile               *_file;
     static Logger       *_instance;
 
 signals:
