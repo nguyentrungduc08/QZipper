@@ -34,6 +34,39 @@ public slots:
     void doWork();
 };
 
+class ControllerR : public QObject
+{
+    Q_OBJECT
+public:
+    ControllerR() {
+        qDebug() << "Create ControllerRead";
+        connect(this, SIGNAL(operate(const QString&)),
+                this, SLOT(handleResults2(const QString&)));
+        connect(this, SIGNAL(operate(const QString&)),
+                this, SLOT(handleResults1(const QString&)));
+
+
+
+        emit operate("");
+        int count  = 0;
+        while (count < 10){
+            QThread::sleep(1);
+            qDebug() << "in constructor after emit" << count;
+            ++count;
+        }
+    };
+
+    ~ControllerR() {
+        qDebug() << "Destroy ControllerRead";
+    };
+
+public slots:
+    void handleResults1(const QString &s);
+    void handleResults2(const QString &s);
+signals:
+    void operate(const QString &s);
+};
+
 class ControllerRead : public QObject
 {
     Q_OBJECT

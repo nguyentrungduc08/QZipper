@@ -66,9 +66,13 @@ void fun(){
     }
 }
 
+
 int main(int argc, char *argv[])
 {
     std::cout << "log: " << __LINE__ << __FUNCTION__ << std::endl;
+
+
+    ControllerR *con = new ControllerR;
 
     const char * url = "QZipper";
     qmlRegisterType<QZipper>(url,1,0,"QZipper");
@@ -77,10 +81,10 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
 
-    ControllerWrite *contWrite = new ControllerWrite;
+    //ControllerWrite *contWrite = new ControllerWrite;
 
 
-    ControllerRead *contRead = new ControllerRead;
+    //ControllerRead *contRead = new ControllerRead;
 
     QIcon icon(":/resources/zipper.png");
     app.setWindowIcon(icon);
